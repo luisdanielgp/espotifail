@@ -1,0 +1,1 @@
+[{"model": "albums.album", "pk": "7d23a83a-59e4-41e5-a029-c89853bfae95", "fields": {"name": "Valtari", "cover": "https://upload.wikimedia.org/wikipedia/en/a/af/Sigur_Ros_-_Valtari.jpg", "release_day": "2012-05-23", "copyright": "Sundlaugin", "track_count": 8, "genre": "Post-Rock", "country": "ISL", "price": "8.99", "currency": "USD"}}]
