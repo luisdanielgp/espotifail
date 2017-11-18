@@ -1,10 +1,13 @@
 from .base import *
 import dj_database_url
+import os
 
 
 DEBUG = False
 
 ALLOWED_HOST = ["*"]  # aquí va el dominio que le pondremos a heroku
+
+SECRET_KEY = os.getenv("SECRET_KEY,None")
 
 DATABASES = dict()
 
