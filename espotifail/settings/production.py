@@ -7,7 +7,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["spotifail.herokuapp.com"]  # aquí va el dominio que le pondremos a heroku
 
-SECRET_KEY = os.getenv("SECRET_KEY, None")
+SECRET_KEY = os.getenv("SECRET_KEY", None)
 
 DATABASES = dict()
 
