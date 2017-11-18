@@ -5,7 +5,7 @@ import os
 
 DEBUG = False
 
-ALLOWED_HOST = ["*"]  # aquí va el dominio que le pondremos a heroku
+ALLOWED_HOST = ["https://spotifail.heroku.com/"]  # aquí va el dominio que le pondremos a heroku
 
 SECRET_KEY = os.getenv("SECRET_KEY,None")
 
