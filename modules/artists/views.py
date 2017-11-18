@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .models import Artist
 from .serializers import ArtistsModelSerializer
 from django.http import Http404
+from django.db.models import Q
 
 
 # Create your views here.
@@ -18,13 +19,31 @@ class ListArtist(APIView):  # por convención, list artist lista a todos los art
     Este endpoint trae todos los artistas
     '''
 
+    def _filtering(self, params):
+        genre = params.get('genre', "")
+        band = params.get('band', False)
+        name = params.get('name', "")
+        # con el get, si no encuentra nos trae el segundo elemento del parentesis
+
+        queryset = Artist.objects.filter(Q(primary_genre__iexact=genre) & Q(
+            is_band=band) & Q(name__icontains=name))
+
+        return queryset
+
     def get(self, request):
-        artists = Artist.objects.all()  # obtenemos todos los artistas de la bdd
-        serializer = ArtistsModelSerializer(artists, many=True)
-        # convertimos los diccionarios obtenidos en lista tipo json
-        #  con el many=True trae una lista de diccionarios
-        #  sin el many nos trae un diccionario
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        if request.query_params:
+            query = self._filtering(request.query_params)
+            serializer = ArtistsModelSerializer(query, many=True)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            artists = Artist.objects.all()  # obtenemos todos los artistas de la bdd
+            serializer = ArtistsModelSerializer(artists, many=True)
+            # convertimos los diccionarios obtenidos en lista tipo json
+            #  con el many=True trae una lista de diccionarios
+            #  sin el many nos trae un diccionario
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = ArtistsModelSerializer(data=request.data)
