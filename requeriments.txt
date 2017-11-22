@@ -1,6 +1,7 @@
 beautifulsoup4==4.6.0
 certifi==2017.7.27.1
 chardet==3.0.4
+click==6.7
 coverage==4.4.2
 dj-database-url==0.4.2
 Django==1.11.2
@@ -15,8 +16,8 @@ oauthlib==2.0.6
 Pillow==2.9.0
 psycopg2==2.7.3.2
 PyJWT==1.5.3
+python-dotenv==0.7.1
 pytz==2017.3
 requests==2.18.4
 urllib3==1.22
 whitenoise==3.3.1
-python-dotenv==0.7.1
